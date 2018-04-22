@@ -1,0 +1,28 @@
+
+#include "libft.h"
+
+char	*ft_itoa(unsigned long long int n)
+{
+	char	*res;
+	int		size;
+	int		i;
+
+	size = 1;
+	i = n;
+	while ((i = i / 10))
+		size++;
+	if (n < 0)
+		size += 1;
+	if ((res = (char *)malloc(sizeof(*res) * size + 1)) == NULL)
+		return (NULL);
+	if (n < 0)
+	{
+		res[0] = '-';
+		n *= -1;
+	}
+	res[size--] = '\0';
+	res[size--] = n % 10 + 48;
+	while ((n = n / 10))
+		res[size--] = n % 10 + 48;
+	return (res);
+}
