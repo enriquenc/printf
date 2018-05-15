@@ -11,19 +11,39 @@
 #******************************************************************************#
 
 HEAD = ft_printf.h
-SOURCES = ft_printf.c
+SOURCES =	ft_printf.c	\
+			print_d.c	\
+			start_x_o_u.c	\
+			print_smth.c	\
+			pass_spaces.c	\
+			parse_flags.c		\
+			print_o.c	\
+			print_u.c	\
 
-NAME = libft.a
+NAME = libftprintf.a
+SRCS  = $(addprefix src/, $(SOURCES))
+OBJ = $(SRCS:.c=.o)
 FLAGS = -Wall -Wextra -Werror
-OPTION = -c -I $(HEAD)
-OBJ = ft_printf.o
+HDIR = include
 
-all: $(NAME)
-$(NAME):
-	gcc $(FLAGS) $(OPTION) $(SOURCES)
+all:$(NAME)
+
+$(NAME): $(OBJ)
+	make -C libft
+	cp libft/libft.a ./$(NAME)
 	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+%.o: %.c
+	gcc $(FLAGS) -o $@ -c $< -I $(HDIR)
+
+gcc: all
+	gcc $(FLAGS) main.c $(NAME)
+	./a.out
 clean :
 	rm -f $(OBJ)
+	make clean -C libft
+	rm -f a.out
 fclean : clean
 	rm -f $(NAME)
+	make fclean -C libft
 re : fclean all
