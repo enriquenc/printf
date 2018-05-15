@@ -103,6 +103,8 @@ void parse_conversion(const char **format, tf_list *lformat)
         lformat->conversion = 'c';
     if (**format == 'O' || **format == 'S' || **format == 'D' || **format == 'U' || **format == 'C')
         lformat->size = "l";
+    if (**format == '%')
+        lformat->conversion = '%';
     (*format)++;
 }
 

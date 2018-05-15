@@ -173,16 +173,24 @@ int main()
     // printf("%-12.4u\n\n", nbr); 
 
     //o
-    ft_printf("@moulitest: %#.o %#.0o\n", 0, 0);
-    printf("@moulitest: %#.o %#.0o\n\n", 0, 0);
+    // ft_printf("@moulitest: %#.o %#.0o|\n", 0, 0);
+    // printf("@moulitest: %#.o %#.0o\n\n", 0, 0);
 
-    ft_printf("%#6o\n", 2500);
-    printf("%#6o\n\n", 2500);
+    // ft_printf("%#6o\n", 2500);
+    // printf("%#6o\n\n", 2500);
 
-    ft_printf("|%-05o|\n", 2500);
-    ft_printf("|%-05o|\n\n", 2500);
+    // ft_printf("|%-05o|\n", 2500);
+    // ft_printf("|%-05o|\n\n", 2500);
 
-    ft_printf("|%-5.10o|\n", 2500);
-    printf("|%-5.10o|\n\n", 2500);
+    // ft_printf("|%-5.10o|\n", 2500);
+    // printf("|%-5.10o|\n\n", 2500);
+
+    // ft_printf("|%-10.5o|\n", 2500);
+    // printf("|%-10.5o|\n\n", 2500);
+
+    // ft_printf("|@moulitest: %5.o %5.0o|\n", 0, 0);
+    // printf("|@moulitest: %5.o %5.0o|\n\n", 0, 0);
+
+    printf("%d\n", ft_printf("%5%"));                        
     return 0;
 }

@@ -35,9 +35,11 @@ int print(tf_list *lformat, va_list *list)
     int result;
 
     result = 0;
+    if (lformat->conversion == '%')
+        result += print_percent(lformat);
     if (lformat->conversion == 'd')
         result += print_d(lformat, list);
-    else if (lformat->conversion == 'x' || lformat->conversion == 'u' || lformat->conversion == 'o')
+    else if (lformat->conversion == 'x' || lformat->conversion == 'X' || lformat->conversion == 'u' || lformat->conversion == 'o')
         result += start_x_o_u(lformat, list);
     return (result);
 }
@@ -53,12 +55,6 @@ int parse_start(va_list *list, const char *format)
         if(*format == '%')
         {
             format++;
-            if (*format == '%')
-            {
-                result += write(1, &(*format), 1);
-                format++;
-                continue ;
-            }
             lst_init(&lformat);
             parse_flags(&format, lformat);
             parse_width(&format, lformat, list);

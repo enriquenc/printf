@@ -41,14 +41,13 @@ int start_x_o_u(tf_list *lformat, va_list *list)
 {
     int result;
     uintmax_t nbr;
-
     nbr = get_unbr(lformat, list);
     result = 0;
     if (lformat->conversion == 'u')
         result += print_u(lformat, nbr);
     else if (lformat->conversion == 'o')
         result += print_o(lformat, nbr);
-    // else if (lformat->conversion == 'x')
-    //     result += print_x(lformat, list, nbr);
+    else if (lformat->conversion == 'x' || lformat->conversion == 'X')
+        result += print_x(lformat, nbr);
     return (result);
 }

@@ -19,6 +19,8 @@ SOURCES =	ft_printf.c	\
 			parse_flags.c		\
 			print_o.c	\
 			print_u.c	\
+			print_x.c	\
+			print_percent.c	\
 
 NAME = libftprintf.a
 SRCS  = $(addprefix src/, $(SOURCES))

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_smth.c                                       :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaslyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 16:43:23 by tmaslyan          #+#    #+#             */
-/*   Updated: 2018/05/07 16:43:24 by tmaslyan         ###   ########.fr       */
+/*   Created: 2018/05/15 18:21:14 by tmaslyan          #+#    #+#             */
+/*   Updated: 2018/05/15 18:21:15 by tmaslyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_smth(char to_print, int length)
+int print_percent(tf_list *lformat)
 {
     int result;
 
-    if (length <= 0)
-        return (0);
     result = 0;
-    while (length--)
-        result += write(1, &to_print, 1);
+    if (lformat->flags->minus)
+    {
+        lformat->flags->zero = 0;
+        result += write(1, "%", 1);
+    }
+    if (lformat->flags->zero)
+        result += print_smth('0', lformat->width - 1);
+    else
+        result += print_smth(' ', lformat->width - 1);
+    if (!lformat->flags->minus)
+        result += write(1, "%", 1);
     return (result);
 }

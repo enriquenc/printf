@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*itoa_base(unsigned nbr, int base, char size)
+
+char	*itoa_base(uintmax_t nbr, int base, char size)
 {
-	unsigned	temp;
+	uintmax_t	temp;
 	int		i;
 	char	*res;
 

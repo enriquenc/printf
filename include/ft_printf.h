@@ -17,6 +17,8 @@
 #include <stdarg.h>
 #include "../libft/include/libft.h"
 
+#include <stdio.h>
+
 typedef struct s_flags
 {
     int minus;
@@ -54,5 +56,7 @@ void parse_conversion(const char **format, tf_list *lformat);
 void parse_flags(const char **format, tf_list *lformat);
 int print_o(tf_list *lformat, uintmax_t nbr);
 int print_u(tf_list *lformat, uintmax_t nbr);
+int print_x(tf_list *lformat, uintmax_t nbr);
+int print_percent(tf_list *lformat);
 
 # endif

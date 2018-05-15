@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int print_nbr(tf_list *lformat, intmax_t nbr)
+static int print_nbr(tf_list *lformat, uintmax_t nbr)
 {
     char *str;
     int result;

@@ -94,7 +94,7 @@ size_t				ft_factorial(int nbr);
 int					ft_simple_pow(int nbr, int power);
 char				*ft_strrev(char *str);
 
-char				*itoa_base(unsigned nbr, int base, char size);
+char				*itoa_base(uintmax_t nbr, int base, char size);
 int len_int(intmax_t n);
 
 #endif
