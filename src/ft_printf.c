@@ -14,11 +14,6 @@
 
 static void lst_init(tf_list **lformat)
 {
-    if (!*lformat)
-    {
-        (*lformat) = (tf_list *)malloc(sizeof(tf_list));
-        (*lformat)->flags = (t_flags *)malloc(sizeof(tf_list));
-    }
     (*lformat)->flags->minus = 0;
     (*lformat)->flags->zero = 0;
     (*lformat)->flags->plus = 0;
@@ -41,6 +36,8 @@ int print(tf_list *lformat, va_list *list)
         result += print_d(lformat, list);
     else if (lformat->conversion == 'x' || lformat->conversion == 'X' || lformat->conversion == 'u' || lformat->conversion == 'o')
         result += start_x_o_u(lformat, list);
+    else if (lformat->conversion == 'c')
+        result += print_c(lformat, list);
     return (result);
 }
 
@@ -50,6 +47,8 @@ int parse_start(va_list *list, const char *format)
     tf_list *lformat;
 
     result = 0;
+    lformat = (tf_list *)malloc(sizeof(tf_list));
+    lformat->flags = (t_flags *)malloc(sizeof(tf_list));
     while(*format)
     {
         if(*format == '%')
@@ -70,6 +69,8 @@ int parse_start(va_list *list, const char *format)
             format++;
         }
     }
+    free(lformat->flags);
+    free(lformat);
     return result;
 }
 

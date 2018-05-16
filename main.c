@@ -1,8 +1,12 @@
 #include "include/ft_printf.h"
 #include <stdio.h>
+#include <locale.h>
+
+
 
 int main()
 {   
+    setlocale(LC_CTYPE, "");
     // /*D, d, i*/
     // ft_printf("*******************************\n");
     // ft_printf("d and i \nvalue = 42\n1 - yours \n2 - oroginal\n");
@@ -191,6 +195,19 @@ int main()
     // ft_printf("|@moulitest: %5.o %5.0o|\n", 0, 0);
     // printf("|@moulitest: %5.o %5.0o|\n\n", 0, 0);
 
-    printf("%d\n", ft_printf("%5%"));                        
+    // unsigned char bytes[4];
+    // bytes[3] = 0;
+    // bytes[2] = 0;
+    // bytes[0] = 206;
+    // bytes[1] = 177;
+    // write(1, bytes, 2);
+    ft_printf("%c\n", 's');
+    printf("%c\n\n", 's');                    
+    ft_printf("%C\n", L'α');
+    printf("%C\n\n", L'α');
+    ft_printf("%C\n", L'훘');
+    printf("%C\n\n", L'훘');
+    ft_printf("%C\n", L'𘚠');
+    printf("%C\n\n", L'𘚠');
     return 0;
 }

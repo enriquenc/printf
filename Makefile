@@ -21,6 +21,7 @@ SOURCES =	ft_printf.c	\
 			print_u.c	\
 			print_x.c	\
 			print_percent.c	\
+			print_c.c 	\
 
 NAME = libftprintf.a
 SRCS  = $(addprefix src/, $(SOURCES))

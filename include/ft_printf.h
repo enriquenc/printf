@@ -58,5 +58,6 @@ int print_o(tf_list *lformat, uintmax_t nbr);
 int print_u(tf_list *lformat, uintmax_t nbr);
 int print_x(tf_list *lformat, uintmax_t nbr);
 int print_percent(tf_list *lformat);
+int print_c(tf_list *lformat, va_list *list);
 
 # endif
