@@ -201,13 +201,16 @@ int main()
     // bytes[0] = 206;
     // bytes[1] = 177;
     // write(1, bytes, 2);
-    ft_printf("%c\n", 's');
-    printf("%c\n\n", 's');                    
-    ft_printf("%C\n", L'α');
-    printf("%C\n\n", L'α');
-    ft_printf("%C\n", L'훘');
-    printf("%C\n\n", L'훘');
-    ft_printf("%C\n", L'𘚠');
-    printf("%C\n\n", L'𘚠');
+    // ft_printf("%c\n", 's');
+    // printf("%c\n\n", 's');                    
+    // ft_printf("%C\n", L'α');
+    // printf("%C\n\n", L'α');
+    // ft_printf("%C\n", L'훘');
+    // printf("%C\n\n", L'훘');
+    // ft_printf("%C\n", L'𘚠');
+    // printf("%C\n\n", L'𘚠');
+
+    ft_printf("%15.4o\n", 424242);
+    printf("%15.4o", 424242);
     return 0;
 }

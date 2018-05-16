@@ -18,7 +18,7 @@ static int print_nbr(tf_list *lformat, uintmax_t nbr)
     int result;
 
     result = 0;
-    str = ft_itoa(nbr);
+    str = itoa_base(nbr, 10, 'a');
     result += print_smth('0', lformat->precision - len_int(nbr));
     lformat->precision = 0;
     result += write(1, str, ft_strlen(str));

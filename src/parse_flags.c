@@ -17,6 +17,11 @@ void parse_width(const char **format, tf_list *lformat, va_list *list)
     if (**format == '*')
     {
         lformat->width = va_arg(*list, int);
+        if (lformat->width < 0)
+        {
+            lformat->width *= -1;
+            lformat->flags->minus = 1;
+        }
         (*format)++;
         return;
     }

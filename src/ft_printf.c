@@ -38,6 +38,8 @@ int print(tf_list *lformat, va_list *list)
         result += start_x_o_u(lformat, list);
     else if (lformat->conversion == 'c')
         result += print_c(lformat, list);
+    else if (lformat->conversion == 's')
+        result += print_s(lformat, list);
     return (result);
 }
 
