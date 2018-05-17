@@ -15,12 +15,12 @@
 
 char	*ft_itoa(intmax_t n)
 {
-	char	*res;
-	int		size;
+	char			*res;
+	int				size;
 	intmax_t		i;
 
 	if (n == 0)
-		return(ft_strdup("0"));
+		return (ft_strdup("0"));
 	size = 1;
 	i = n;
 	while ((i = i / 10))
@@ -33,7 +33,7 @@ char	*ft_itoa(intmax_t n)
 	res[size--] = '\0';
 	while (i)
 	{
-		if(i % 10 >= 0)
+		if (i % 10 >= 0)
 			res[size--] = i % 10 + 48;
 		else
 			res[size--] = -1 * (i % 10) + 48;

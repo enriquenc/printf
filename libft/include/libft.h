@@ -33,7 +33,6 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_itoa(intmax_t n);
-char				*ft_uitoa(uintmax_t n);
 char				*ft_strdup(const char *s);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -95,6 +94,6 @@ int					ft_simple_pow(int nbr, int power);
 char				*ft_strrev(char *str);
 
 char				*itoa_base(uintmax_t nbr, int base, char size);
-int len_int(intmax_t n);
+int					len_int(intmax_t n);
 
 #endif

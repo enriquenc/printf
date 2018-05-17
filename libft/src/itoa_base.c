@@ -13,12 +13,11 @@
 #include "libft.h"
 #include <stdio.h>
 
-
 char	*itoa_base(uintmax_t nbr, int base, char size)
 {
 	uintmax_t	temp;
-	int		i;
-	char	*res;
+	int			i;
+	char		*res;
 
 	temp = nbr;
 	if (nbr == 0)
@@ -33,15 +32,10 @@ char	*itoa_base(uintmax_t nbr, int base, char size)
 	res[i--] = '\0';
 	while (nbr)
 	{
-		if((nbr % base + 48) <= 57)
+		if ((nbr % base + 48) <= 57)
 			res[i--] = nbr % base + 48;
 		else
-		{
-			if (size == 'a')
-				res[i--] = nbr % base + 87;
-			else if (size == 'A')
-				res[i--] = nbr % base + 55;
-		}
+			res[i--] = nbr % base + (size == 'A' ? 55 : 87);
 		nbr = nbr / base;
 	}
 	return (res);

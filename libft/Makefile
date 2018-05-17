@@ -78,7 +78,6 @@ SRCNAME	=	ft_lstdel.c\
 			ft_strnequ.c\
 			ft_sort_list.c\
 			itoa_base.c\
-			ft_uitoa.c\
 			len_int.c
 
 SRC    = $(addprefix src/, $(SRCNAME))

@@ -24,6 +24,7 @@ SOURCES =	ft_printf.c	\
 			print_c.c 	\
 			print_s.c	\
 			print_p.c	\
+			get_dnbr.c	\
 
 NAME = libftprintf.a
 SRCS  = $(addprefix src/, $(SOURCES))
@@ -34,7 +35,6 @@ HDIR = include
 all:$(NAME)
 
 $(NAME): $(OBJ)
-	make -C libft
 	cp libft/libft.a ./$(NAME)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)

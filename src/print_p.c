@@ -12,26 +12,26 @@
 
 #include "ft_printf.h"
 
-int print_p(tf_list *lformat, va_list *list)
+int			print_p(t_flist *lformat, va_list *list)
 {
-    int result;
-    size_t p;
-    char *str;
+	int		result;
+	size_t	p;
+	char	*str;
 
-    result = 0;
-    p = va_arg(*list, size_t);
-    str = itoa_base(p, 16, 'a');
-    if (lformat->flags->minus)
-    {
-        result += write(1, "0x", 2);
-        result += write(1, str, ft_strlen(str));
-    }
-    result += print_smth(' ', lformat->width - ft_strlen(str) - 2);
-    if (!lformat->flags->minus)
-    {
-        result += write(1, "0x", 2);
-        result += write(1, str, ft_strlen(str));
-    }
-    free(str);
-    return (result);
+	result = 0;
+	p = va_arg(*list, size_t);
+	str = itoa_base(p, 16, 'a');
+	if (lformat->flags->minus)
+	{
+		result += write(1, "0x", 2);
+		result += write(1, str, ft_strlen(str));
+	}
+	result += print_smth(' ', lformat->width - ft_strlen(str) - 2);
+	if (!lformat->flags->minus)
+	{
+		result += write(1, "0x", 2);
+		result += write(1, str, ft_strlen(str));
+	}
+	free(str);
+	return (result);
 }

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void pass_spaces(const char **format)
+void	pass_spaces(const char **format)
 {
-    while(**format == ' ')
-        (*format)++;
+	while (**format == ' ')
+		(*format)++;
 }
