@@ -23,32 +23,60 @@ wchar_t *get_str(tf_list *lformat, va_list *list)
     return (result);
 }
 
-int write_str(char *str, tf_list *lformat)
+int write_str(char *s, tf_list *lformat)
 {
     int result;
+    char *str = NULL;
+    int print;
 
+    print = 1;
     result = 0;
-    if (str == NULL)
+    if (lformat->precision == 0)
+        print = 0;
+    if (s == NULL)
     {
-        str = "(null)";
+        str = ft_strdup("(null)");
         lformat->precision = 0;
     }
-    else
+    else if (lformat->precision)
     {
+        str = ft_strdup(s);
         if (lformat->precision > 0)
         {
-            str[lformat->precision] = 0;
-            if (!*str)
-                lformat->precision = 0;
+            if (!*str || lformat->precision > (int)ft_strlen(str))
+                lformat->precision = (int)ft_strlen(str);
+            else
+                str[lformat->precision] = 0;
         }
         else
             lformat->precision = ft_strlen(str);
     }
-    if (lformat->flags->minus)
-        result += write(1, str, ft_strlen(str));
+    if (lformat->flags->minus && print)
+            result += write(1, str, ft_strlen(str));
     result += print_smth(' ', lformat->width - lformat->precision);
-    if (!lformat->flags->minus)
-        result += write(1, str, ft_strlen(str)); 
+    if (!lformat->flags->minus && print)
+            result += write(1, str, ft_strlen(str));
+    free(str);
+    return (result);
+}
+
+int check_size(wchar_t *str)
+{
+    int result;
+
+    result = 0;
+    while (*str)
+    {
+        if (*str < 128)
+            result++;
+        else if (*str < 2048)
+            result += 2;
+        else if (*str < 65536)
+            result += 3;
+        else
+            result += 4;
+        str++;
+    }
     return (result);
 }
 
@@ -66,10 +94,21 @@ int print_s(tf_list *lformat, va_list *list)
     }
     else
     {
-        while(*str)
+        if (str == NULL)
+            result += write_str((char *)str, lformat);
+        else
         {
-            result += check_mask(*str);
-            str++;
+            while(lformat->flags->minus && *str)
+            {
+                result += check_mask(*str);
+                str++;
+            }
+            result += print_smth(' ', lformat->width - check_size(str));
+            while(!lformat->flags->minus && *str)
+            {
+                result += check_mask(*str);
+                str++;
+            }
         }
     }
     return (result);

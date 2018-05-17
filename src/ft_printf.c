@@ -40,6 +40,8 @@ int print(tf_list *lformat, va_list *list)
         result += print_c(lformat, list);
     else if (lformat->conversion == 's')
         result += print_s(lformat, list);
+    else if (lformat->conversion == 'p')
+        result += print_p(lformat, list);
     return (result);
 }
 
@@ -56,6 +58,8 @@ int parse_start(va_list *list, const char *format)
         if(*format == '%')
         {
             format++;
+            if (!*format)
+                break;
             lst_init(&lformat);
             parse_flags(&format, lformat);
             parse_width(&format, lformat, list);

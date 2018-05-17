@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-static int print_nbr(tf_list *lformat, uintmax_t nbr)
+static int print_nbr(tf_list *lformat, uintmax_t nbr, char *str)
 {
-    char *str;
     int result;
 
     result = 0;
-    str = itoa_base(nbr, 10, 'a');
+    if (lformat->precision == 0 && nbr == 0)
+        return (result);
     result += print_smth('0', lformat->precision - len_int(nbr));
     lformat->precision = 0;
     result += write(1, str, ft_strlen(str));
@@ -29,16 +29,18 @@ static int print_nbr(tf_list *lformat, uintmax_t nbr)
 int print_u(tf_list *lformat, uintmax_t nbr)
 {
     int result;
+    char *str;
 
     result = 0;
+    str = itoa_base(nbr, 10, 'a');
     if (lformat->flags->minus)
-        result += print_nbr(lformat, nbr);
-    if (len_int(nbr) > lformat->precision)
+        result += print_nbr(lformat, nbr, str);
+    if ((int)ft_strlen(str) > lformat->precision)
     {
         if(lformat->flags->zero)
-            result += print_smth('0', lformat->width - len_int(nbr));
+            result += print_smth('0', lformat->width - (int)ft_strlen(str));
         else
-            result += print_smth(' ', lformat->width - len_int(nbr));
+            result += print_smth(' ', lformat->width - (int)ft_strlen(str));
     }
     else
     {
@@ -46,10 +48,10 @@ int print_u(tf_list *lformat, uintmax_t nbr)
             result += print_smth('0', lformat->width - lformat->precision);
         else
             result += print_smth(' ', lformat->width - lformat->precision);
-        result += print_smth('0', lformat->precision - len_int(nbr));
+        result += print_smth('0', lformat->precision - (int)ft_strlen(str));
         lformat->precision = 0;
     }
     if (!(lformat->flags->minus))
-        result += print_nbr(lformat, nbr);
+        result += print_nbr(lformat, nbr, str);
     return (result);
 }

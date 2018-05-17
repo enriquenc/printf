@@ -21,7 +21,7 @@ int check_sign(tf_list *lformat, ssize_t nbr, t_sign *sign)
     sign->is_printed = 0;
     if (nbr < 0)
         result++;
-    else if (lformat->flags->space && !(lformat->flags->plus) && nbr > 0)
+    else if (lformat->flags->space && !(lformat->flags->plus) && nbr >= 0)
     {
         result += write(1, " ", 1);
         sign->is_printed = 1;

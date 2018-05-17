@@ -61,5 +61,6 @@ int print_percent(tf_list *lformat);
 int print_c(tf_list *lformat, va_list *list);
 int print_s(tf_list *lformat, va_list *list);
 int check_mask(wchar_t chr);
+int print_p(tf_list *lformat, va_list *list);
 
 # endif

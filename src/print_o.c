@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-static int print_nbr(tf_list *lformat, uintmax_t nbr)
+static int print_nbr(tf_list *lformat, uintmax_t nbr, char *str)
 {
-    char *str;
     int result;
 
     result = 0;
     str = itoa_base(nbr, 8, 'a');
+    if (lformat->precision == -1 && nbr == 0)
+        lformat->flags->hash = 0;
     if (lformat->precision == 0 && nbr == 0 && lformat->width)
     {
         result += write(1, " ", 1);
@@ -47,9 +47,11 @@ int print_o(tf_list *lformat, uintmax_t nbr)
 {
     int result;
     int sign;
+    char *str;
 
     sign = 0;
     result = 0;
+    str = itoa_base(nbr, 8, 'a');
     if (lformat->flags->hash)
         sign = 1;
     if (lformat->flags->zero)
@@ -59,15 +61,15 @@ int print_o(tf_list *lformat, uintmax_t nbr)
             lformat->flags->hash = 0;
         }
     if (lformat->flags->minus)
-        result += print_nbr(lformat, nbr);
-    if (len_int(nbr) > lformat->precision)
+        result += print_nbr(lformat, nbr, str);
+    if ((int)ft_strlen(str) > lformat->precision)
     {
         if(lformat->flags->zero)
-            result += print_smth('0', lformat->width - len_int(nbr) - sign);
+            result += print_smth('0', lformat->width - (int)ft_strlen(str) - sign);
         else
         {   
             if (!lformat->flags->minus)
-                result += print_smth(' ', lformat->width - len_int(nbr) - sign);
+                result += print_smth(' ', lformat->width - (int)ft_strlen(str) - sign);
             else
                 result += print_smth(' ', lformat->width - result);
         }
@@ -83,10 +85,10 @@ int print_o(tf_list *lformat, uintmax_t nbr)
             result += write(1, "0", 1);
             lformat->flags->hash = 0;
         }
-        result += print_smth('0', lformat->precision - len_int(nbr) - sign);
+        result += print_smth('0', lformat->precision - (int)ft_strlen(str) - sign);
         lformat->precision = 0;
     }
     if (!(lformat->flags->minus))
-        result += print_nbr(lformat, nbr);
+        result += print_nbr(lformat, nbr, str);
     return (result);
 }
