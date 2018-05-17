@@ -32,5 +32,6 @@ int print_p(tf_list *lformat, va_list *list)
         result += write(1, "0x", 2);
         result += write(1, str, ft_strlen(str));
     }
+    free(str);
     return (result);
 }

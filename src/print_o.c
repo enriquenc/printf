@@ -17,7 +17,6 @@ static int print_nbr(tf_list *lformat, uintmax_t nbr, char *str)
     int result;
 
     result = 0;
-    str = itoa_base(nbr, 8, 'a');
     if (lformat->precision == -1 && nbr == 0)
         lformat->flags->hash = 0;
     if (lformat->precision == 0 && nbr == 0 && lformat->width)

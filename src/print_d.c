@@ -138,5 +138,6 @@ int print_d(tf_list *lformat, va_list *list)
     }
     if (!(lformat->flags->minus))
         result += print_nbr(lformat, &nbr, sign);
+    free(sign);
     return (result);
 }
