@@ -35,6 +35,7 @@ HDIR = include
 all:$(NAME)
 
 $(NAME): $(OBJ)
+	make -C libft
 	cp libft/libft.a ./$(NAME)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
