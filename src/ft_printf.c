@@ -22,7 +22,7 @@ static void	lst_init(t_flist **lformat)
 	(*lformat)->width = 0;
 	(*lformat)->precision = -1;
 	(*lformat)->size = NULL;
-	(*lformat)->conversion = -1;
+	(*lformat)->conversion = 0;
 }
 
 int			print(t_flist *lformat, va_list *list)
@@ -40,7 +40,7 @@ int			print(t_flist *lformat, va_list *list)
 	else if (lformat->conversion == 'c')
 		result += print_c(lformat, list);
 	else if (lformat->conversion == 's')
-		result += print_s(lformat, list);
+		result += print_s(lformat, list, &result);
 	else if (lformat->conversion == 'p')
 		result += print_p(lformat, list);
 	return (result);
@@ -62,7 +62,7 @@ void		parse_start(va_list *list,
 			if (*format == '.')
 				parse_precision(&format, lformat, list);
 			parse_size(&format, lformat);
-			parse_conversion(&format, lformat);
+			parse_conversion(&format, lformat, result);
 			(*result) += print(lformat, list);
 		}
 		else

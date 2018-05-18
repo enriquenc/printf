@@ -70,11 +70,7 @@ static char		*get_nbr(t_flist *lformat,
 
 static void		print_x_opt(t_flist *lformat, int sign, int *result, char *str)
 {
-	if (lformat->flags->zero)
-		(*result) += print_smth('0', lformat->width
-		- lformat->precision - sign);
-	else
-		(*result) += print_smth(' ', lformat->width
+	(*result) += print_smth((lformat->flags->zero ? '0' : ' '), lformat->width
 		- lformat->precision - sign);
 	if (lformat->flags->hash)
 	{
@@ -85,7 +81,7 @@ static void		print_x_opt(t_flist *lformat, int sign, int *result, char *str)
 		lformat->flags->hash = 0;
 	}
 	(*result) += print_smth('0', lformat->precision
-		- (int)ft_strlen(str) - sign);
+		- (int)ft_strlen(str));
 	lformat->precision = 0;
 }
 

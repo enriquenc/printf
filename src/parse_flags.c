@@ -14,6 +14,11 @@
 
 void	parse_width(const char **format, t_flist *lformat, va_list *list)
 {
+	if (ft_isdigit(**format))
+	{
+		lformat->width = ft_atoi(*format);
+		(*format) += len_int(lformat->width);
+	}
 	if (**format == '*')
 	{
 		lformat->width = va_arg(*list, int);
@@ -23,7 +28,6 @@ void	parse_width(const char **format, t_flist *lformat, va_list *list)
 			lformat->flags->minus = 1;
 		}
 		(*format)++;
-		return ;
 	}
 	if (ft_isdigit(**format))
 	{
@@ -50,8 +54,6 @@ void	parse_precision(const char **format, t_flist *lformat, va_list *list)
 		lformat->precision = ft_atoi(*format);
 		(*format) += len_int(lformat->precision);
 	}
-	if (lformat->precision >= 0)
-		lformat->flags->zero = 0;
 }
 
 void	parse_size(const char **format, t_flist *lformat)
@@ -81,29 +83,31 @@ void	parse_size(const char **format, t_flist *lformat)
 	(*format)++;
 }
 
-void	parse_conversion(const char **format, t_flist *lformat)
+void	parse_conversion(const char **format, t_flist *lformat, int *result)
 {
 	if (**format == 'i' || **format == 'd' || **format == 'D')
 		lformat->conversion = 'd';
-	if (**format == 's' || **format == 'S')
+	else if (**format == 's' || **format == 'S')
 		lformat->conversion = 's';
-	if (**format == 'o' || **format == 'O')
+	else if (**format == 'o' || **format == 'O')
 		lformat->conversion = 'o';
-	if (**format == 'u' || **format == 'U')
+	else if (**format == 'u' || **format == 'U')
 		lformat->conversion = 'u';
-	if (**format == 'x')
+	else if (**format == 'x')
 		lformat->conversion = 'x';
-	if (**format == 'X')
+	else if (**format == 'X')
 		lformat->conversion = 'X';
-	if (**format == 'p')
+	else if (**format == 'p')
 		lformat->conversion = 'p';
-	if (**format == 'c' || **format == 'C')
+	else if (**format == 'c' || **format == 'C')
 		lformat->conversion = 'c';
+	else if (**format == '%')
+		lformat->conversion = '%';
+	else
+		undefined_parse(result, lformat, **format);
 	if (**format == 'O' || **format == 'S' ||
 	**format == 'D' || **format == 'U' || **format == 'C')
 		lformat->size = "l";
-	if (**format == '%')
-		lformat->conversion = '%';
 	(*format)++;
 }
 

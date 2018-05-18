@@ -43,7 +43,7 @@ int		check_mask(wchar_t chr)
 
 	result = 0;
 	ft_bzero(mask, 4);
-	if (chr < 128)
+	if (chr < 128 || (MB_CUR_MAX == 1 && chr < 256))
 		result += write(1, &chr, 1);
 	else if (chr < 2048)
 	{
@@ -71,17 +71,15 @@ int		print_c(t_flist *lformat, va_list *list)
 
 	result = 0;
 	chr = get_char(lformat, list);
-	if (chr < 128)
-		bytes = 1;
-	else if (chr < 2048)
-		bytes = 2;
-	else if (chr < 65536)
-		bytes = 3;
-	else
-		bytes = 4;
+	if (chr >= 256 && MB_CUR_MAX == 1)
+		return (-1);
+	bytes = check_bytes(chr);
 	if (lformat->flags->minus)
 		result += check_mask(chr);
-	result += print_smth(' ', lformat->width - bytes);
+	if (lformat->flags->zero)
+		result += print_smth('0', lformat->width - bytes);
+	else
+		result += print_smth(' ', lformat->width - bytes);
 	if (!lformat->flags->minus)
 		result += check_mask(chr);
 	return (result);

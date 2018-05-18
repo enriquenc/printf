@@ -114,6 +114,8 @@ int				print_d(t_flist *lformat, va_list *list)
 	int			i;
 	t_sign		*sign;
 
+	if (lformat->precision >= 0)
+		lformat->flags->zero = 0;
 	sign = (t_sign *)malloc(sizeof(t_sign));
 	nbr = get_dnbr(lformat, list);
 	result = 0;

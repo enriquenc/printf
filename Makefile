@@ -25,6 +25,7 @@ SOURCES =	ft_printf.c	\
 			print_s.c	\
 			print_p.c	\
 			get_dnbr.c	\
+			undefined_parse.c \
 
 NAME = libftprintf.a
 SRCS  = $(addprefix src/, $(SOURCES))

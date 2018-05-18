@@ -52,16 +52,19 @@ void			parse_width(const char **format,
 void			parse_precision(const char **format,
 				t_flist *lformat, va_list *list);
 void			parse_size(const char **format, t_flist *lformat);
-void			parse_conversion(const char **format, t_flist *lformat);
+void			parse_conversion(const char **format, t_flist *lformat,
+				int *result);
 void			parse_flags(const char **format, t_flist *lformat);
 int				print_o(t_flist *lformat, uintmax_t nbr);
 void			print_u(t_flist *lformat, uintmax_t nbr, int *result);
 void			print_x(t_flist *lformat, uintmax_t nbr, int *result);
 int				print_percent(t_flist *lformat);
 int				print_c(t_flist *lformat, va_list *list);
-int				print_s(t_flist *lformat, va_list *list);
+int				print_s(t_flist *lformat, va_list *list, int *result);
 int				check_mask(wchar_t chr);
 int				print_p(t_flist *lformat, va_list *list);
 intmax_t		get_dnbr(t_flist *lformat, va_list *list);
+void			undefined_parse(int *result, t_flist *lformat, char c);
+int				check_bytes(wchar_t chr);
 
 #endif

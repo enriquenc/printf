@@ -21,15 +21,19 @@ int			print_p(t_flist *lformat, va_list *list)
 	result = 0;
 	p = va_arg(*list, size_t);
 	str = itoa_base(p, 16, 'a');
-	if (lformat->flags->minus)
+	if (lformat->flags->minus && lformat->precision)
 	{
 		result += write(1, "0x", 2);
 		result += write(1, str, ft_strlen(str));
 	}
-	result += print_smth(' ', lformat->width - ft_strlen(str) - 2);
-	if (!lformat->flags->minus)
-	{
+	if (lformat->flags->zero || !lformat->precision)
 		result += write(1, "0x", 2);
+	result += print_smth((lformat->flags->zero ? '0' : ' ')
+	, lformat->width - ft_strlen(str) - 2);
+	if (!lformat->flags->minus && lformat->precision)
+	{
+		if (!lformat->flags->zero)
+			result += write(1, "0x", 2);
 		result += write(1, str, ft_strlen(str));
 	}
 	free(str);
