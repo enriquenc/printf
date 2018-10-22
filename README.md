@@ -10,9 +10,9 @@ is a vital function.
 I has recode this function, using my libft (https://github.com/enriquenc/libft)
 
 ## Getting Started
-![image](https://imgur.com/b5gq8Ik)
-![image](https://imgur.com/b5gq8Ik)
-![image](https://imgur.com/dDApKzU)
+![ScreenShot](https://imgur.com/b5gq8Ik)
+![ScreenShot](https://imgur.com/b5gq8Ik)
+![ScreenShot](https://imgur.com/dDApKzU)
 
 ## Authors
 
