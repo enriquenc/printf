@@ -7,13 +7,13 @@ write the resulting string of characters either in a file descriptor or in a par
 Some also propose to recall this string without printing it. In short, undeniably, printf
 is a vital function.
 
-I has recode this function, using my libft (https://github.com/enriquenc/libft)
-Managed the following conversions: sSpdDioOuUxXcC
-Managed %%
-Managed flags #0-+ and space
-Managed the minimum field-width
-Managed the precision
-Managed the flags hh, h, l, ll, j, and z
+I has recode this function, using my libft (https://github.com/enriquenc/libft).
+Managed the following conversions: sSpdDioOuUxXcC.
+Managed %%.
+Managed flags #0-+ and space.
+Managed the minimum field-width.
+Managed the precision.
+Managed the flags hh, h, l, ll, j, and z.
 
 ## Getting Started
 ![ScreenShot](https://i.imgur.com/xrWc8xl.jpg)
