@@ -7,7 +7,7 @@ write the resulting string of characters either in a file descriptor or in a par
 Some also propose to recall this string without printing it. In short, undeniably, printf
 is a vital function.
 
-I has recode this function, using my libft (https://github.com/enriquenc/libft).
+I recoded this function, using my libft (https://github.com/enriquenc/libft).
 
 Managed the following conversions: sSpdDioOuUxXcC.
 
