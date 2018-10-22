@@ -11,7 +11,7 @@ I has recode this function, using my libft (https://github.com/enriquenc/libft)
 
 ## Getting Started
 ![ScreenShot](https://imgur.com/b5gq8Ik)
-![ScreenShot](https://imgur.com/b5gq8Ik)
+![ScreenShot](https://i.imgur.com/b5gq8Ik.jpg)
 ![ScreenShot](https://imgur.com/dDApKzU)
 
 ## Authors
